@@ -1,0 +1,111 @@
+<html>
+    <head>
+        <meta author="Marilyn Esko, Maxie Lawrence"/>
+
+
+    </head>
+    <body>
+        <h3>What is the optimal nightly price?</h3>
+        <form action="/predict" method="get">
+
+            <p>Neighbourhood</p>
+
+            <select name="neighbourhood_group_cleansed">
+                <option value="Friedrichshain-Kreuzberg">Friedrichshain-Kreuzberg</option>
+                <option value="Mitte">Mitte</option>
+                <option value="Pankow">Pankow</option>
+                <option value="Neukoelln">Neukoelln</option>
+                <option value="Charlottenburg-Wilm.">Charlottenburg-Wilm.</option>
+                <option value="Tempelhof - Schoeneberg">Tempelhof - Schoeneberg</option>
+                <option value="Lichtenberg">Lichtenberg</option>
+                <option value="Treptow - Koepenick">Treptow - Koepenick</option>
+                <option value="Steglitz - Zehlendorf">Steglitz - Zehlendorf</option>
+                <option value="Reinickendorf">Reinickendorf</option>
+                <option value="Spandau">Spandau</option>
+                <option value="Marzahn - Hellersdorf">Marzahn - Hellersdorf</option>
+            </select>
+
+
+            <p>Number of People</p>
+
+            <input type="number" name="accommodates" min="1" value="1" />
+
+
+            <p>Number of Nights</p>
+
+            <input type="number" name="minimum_nights" min="1" value="1" />
+
+
+            <p>Room Type</p>
+
+            <select name="room_type">
+                <option value="Entire home/apt">Entire home/apt</option>
+                <option value="Private room">Private room</option>
+                <option value="Shared room">Shared room</option>
+            </select>
+
+
+            <p>Number of Bathrooms</p>
+
+            <input type="number" name="bathrooms" min="1" value="1" />
+
+
+            <p>Number of Bedrooms</p>
+
+            <input type="number" name="bedrooms" min="1" value="1" />
+
+
+            <p>Number of Beds</p>
+
+            <input type="number" name="beds" min="1" value="1" />
+
+
+            <p>Bed Type</p>
+
+            <select name="bed_type">
+                <option value="Real Bed">Real Bed</option>
+                <option value="Pull-out Sofa">Pull-out Sofa</option>
+                <option value="Futon">Futon</option>
+                <option value="Couch">Couch</option>
+                <option value="Airbed">Airbed</option>
+            </select>
+
+            <p>Security Deposit</p>
+
+            <input type="number" name="security_deposit" min="0" value="0" />
+
+
+            <p>Cleaning Fee</p>
+
+            <input type="number" name="cleaning_fee" min="0" value="0" />
+
+
+            <p>Amenities:</p>
+            <!-- insert amenities tick boxes here -->
+
+            <input type="radio" name="Washer" value="Washer"> Washer<br>
+            <input type="radio" name="Hair dryer" value="Hair dryer"> Hair dryer<br>
+            <input type="radio" name="Laptop friendly workspace" value="Laptop friendly workspace"> Laptop friendly workspace<br>
+            <input type="radio" name="Hangers" value="Hangers"> Hangers<br>
+            <input type="radio" name="Iron" value="Iron"> Iron<br>
+            <input type="radio" name="Shampoo" value="Shampoo"> Shampoo<br>
+            <input type="radio" name="TV" value="TV"> TV<br>
+            <input type="radio" name="Hot water" value="Hot water"> Hot water<br>
+            <input type="radio" name="Family/kid friendly" value="Family/kid friendly"> Family/kid friendly<br>
+            <input type="radio" name="Internet" value="Internet"> Internet<br>
+            <input type="radio" name="Host greets you" value="Host greets you"> Host greets you<br>
+            <input type="radio" name="Smoke detector" value="Smoke detector"> Smoke detector<br>
+            <input type="radio" name="Buzzer/wireless intercom" value="Buzzer/wireless intercom"> Buzzer/wireless intercom<br>
+            <input type="radio" name="Lock on bedroom door" value="Lock on bedroom door"> Lock on bedroom door<br>
+            <input type="radio" name="Free street parking" value="Free street parking"> Free street parking<br>
+            <input type="radio" name="Elevator" value="Elevator"> Elevator<br>
+            <input type="radio" name="Bed linens" value="Bed linens"> Bed linens<br>
+            <input type="radio" name="Smoking allowed" value="Smoking allowed"> Smoking allowed<br>
+            <input type="radio" name="First aid kit" value="First aid kit"> First aid kit<br>
+            <input type="radio" name="Cable TV" value="Cable TV"> Cable TV<br><br><br>
+
+            <input type="submit" value="Predict" />
+        </form>
+        <p>{{ optimal_price }}</p>
+    </body>
+</html>
