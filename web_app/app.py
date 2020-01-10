@@ -7,7 +7,7 @@ import pickle
 import numpy as np
 import pandas as pd
 import xgboost
-from flask import Flask, request, jsonify, render_template
+from flask import Flask, request, jsonify, render_template, redirect
 from flask_cors import CORS
 
 # Local imports
@@ -24,82 +24,82 @@ def create_app():
 
     @app.route('/')
     def index():
-        return render_template('example_form.html', optimal_price="")
+        return redirect('https://agitated-torvalds-4e9eb5.netlify.com/index.html')
 
-    @app.route('/predict', methods=['GET'])
-    def predict():
+    #@app.route('/predict', methods=['GET'])
+    #def predict():
 
-        print('\n\n\n\nDEBUG TESTING\n\n\n\n')
+        #print('\n\n\n\nDEBUG TESTING\n\n\n\n')
 
         # defining a dictionary to store data in
-        data = {}
+       # data = {}
 
         # List of features to use in request
-        PARAMETERS = [
-            'neighbourhood_group_cleansed', 'room_type', 'accommodates',
-            'bathrooms', 'bedrooms', 'beds', 'bed_type', 'security_deposit',
-            'cleaning_fee', 'minimum_nights'
-            ]
+       # PARAMETERS = [
+       #     'neighbourhood_group_cleansed', 'room_type', 'accommodates',
+       #     'bathrooms', 'bedrooms', 'beds', 'bed_type', 'security_deposit',
+       #     'cleaning_fee', 'minimum_nights'
+       #     ]
 
-        AMENITIES = [
-           'Washer', 'Hair dryer', 'Laptop friendly workspace', 'Hangers',
-           'Iron', 'Shampoo', 'TV', 'Hot water', 'Family/kid friendly', 'Internet',
-           'Host greets you', 'Smoke detector', 'Buzzer/wireless intercom',
-           'Lock on bedroom door', 'Free street parking', 'Elevator', 'Bed linens',
-           'Smoking allowed', 'First aid kit', 'Cable TV' 
-            ]
+       # AMENITIES = [
+       #    'Washer', 'Hair dryer', 'Laptop friendly workspace', 'Hangers',
+       #    'Iron', 'Shampoo', 'TV', 'Hot water', 'Family/kid friendly', 'Internet',
+       #    'Host greets you', 'Smoke detector', 'Buzzer/wireless intercom',
+       #    'Lock on bedroom door', 'Free street parking', 'Elevator', 'Bed linens',
+       #    'Smoking allowed', 'First aid kit', 'Cable TV' 
+       #     ]
 
-        print('\n\nGetting the request data\n\n')
+        #print('\n\nGetting the request data\n\n')
 
         # load the data
-        for param in PARAMETERS:
-            print(f'{param} type:', type(request.args[param]))
-            print(f'{param}:', request.args[param])
-            try:
-                data[param] = [int(request.args[param])]
-            except:
-                data[param] = [request.args[param]]
+        #for param in PARAMETERS:
+            #print(f'{param} type:', type(request.args[param]))
+            #print(f'{param}:', request.args[param])
+            #try:
+                #data[param] = [int(request.args[param])]
+            #except:
+                #data[param] = [request.args[param]]
 
 
-        print('\n\nAmenities:\n')
+        #print('\n\nAmenities:\n')
 
-        for amenity in AMENITIES:
-            if amenity in request.args.keys():
+        #for amenity in AMENITIES:
+            #if amenity in request.args.keys():
 
-                print(f'{amenity} present! Value: {request.args[amenity]}')
-                data[amenity.replace(' ', '_')] = 1
-            else:
-                data[amenity.replace(' ', '_')] = 0
+                #print(f'{amenity} present! Value: {request.args[amenity]}')
+                #data[amenity.replace(' ', '_')] = 1
+            #else:
+                #data[amenity.replace(' ', '_')] = 0
 
-        for arg in request.args.keys():
-            print(f'{arg}: {request.args[arg]}')
+        #for arg in request.args.keys():
+            #print(f'{arg}: {request.args[arg]}')
 
-        print('\n\nConverting to dataframe\n\n')
+        #print('\n\nConverting to dataframe\n\n')
 
         # convert data into dataframe to be passed through the model
-        data_df = pd.DataFrame.from_dict(data)
+        #data_df = pd.DataFrame.from_dict(data)
 
-        with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
-            print('\n\n', data_df, '\n\n')
+        #with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
+            #print('\n\n', data_df, '\n\n')
 
         # WRANGLING TIME!!!
         #data_df = wrangle(data_df)
 
-        print('\n\nmaking a prediction\n\n')
+        #print('\n\nmaking a prediction\n\n')
 
         # making a prediction by passing a dataframe through the model
-        result = int(model.predict(data_df)[0])
+        #result = int(model.predict(data_df)[0])
 
         # storing the result as a dict
         #output = {'results': int(result[0])}
 
         # create a string response to display
-        response = f'The optimal nightly price is {result}'
+        #response = f'The optimal nightly price is {result}'
 
-        print('\n\n' + response + '\n\n')
+        #print('\n\n' + response + '\n\n')
 
         # convert the dict to a JSON object and return it
-        return render_template('example_form.html', optimal_price=response)
+        #return render_template('example_form.html', optimal_price=response)
 
     @app.route('/json', methods=['GET'])
     def json():
